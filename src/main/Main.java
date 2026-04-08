@@ -75,29 +75,3 @@ public class Main {
 	}
 }
 
-//		Janela janela = new Janela();
-//Navegador navegador = new Navegador(janela);
-//CandidatoDAO candidatoDAO = new CandidatoDAO();
-//
-//TelaCadastro telaCadastro = new TelaCadastro();
-//CadastroController cadastroController = new CadastroController(telaCadastro, candidatoDAO, navegador);
-//
-//TelaContratacao telaContratacao = new TelaContratacao();
-//ContratacaoController contratacaoController = new ContratacaoController(telaContratacao, candidatoDAO, navegador);
-//telaContratacao.adicionarOuvinte(contratacaoController);
-//
-//TelaCentralFuncionarios telaCentral = new TelaCentralFuncionarios();
-//CentralController centralController = new CentralController(telaCentral, candidatoDAO, navegador);
-//telaCentral.adicionarOuvinte(centralController);
-//
-//navegador.adicionarPainel("CADASTRO", telaCadastro);
-//navegador.adicionarPainel("CONTRATACAO", telaContratacao);
-//navegador.adicionarPainel("CENTRAL", telaCentral);
-//
-//Seta o jframe para abrir no meio da tela.
-//janela.setLocationRelativeTo(null);
-//janela.setVisible(true);
-//
-//navegador.navegarPara("CADASTRO");
-//}
-//}
