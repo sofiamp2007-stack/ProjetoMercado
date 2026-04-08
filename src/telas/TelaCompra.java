@@ -50,18 +50,18 @@ public class TelaCompra extends JPanel {
 		
 		table = new JTable();
 		table.setFont(new Font("Sitka Text", Font.BOLD, 15));
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null},
-			},
-			new String[] {
-				"ID", "Nome", "Pre\u00E7o", "Quantidade"
-			}
-		));
+		
 		scrollPane.setViewportView(table);
 		
-		this.jtable_model = (DefaultTableModel) this.table.getModel();
-		
+		this.jtable_model = new DefaultTableModel(
+				new Object[][] {
+					{null, null, null, null},
+				},
+				new String[] {
+					"ID", "Nome", "Pre\u00E7o", "Quantidade"
+				}
+			);
+		table.setModel(this.jtable_model);
 		btnAdicionarCarrinho = new JButton("Adicionar ao carrinho");
 		btnAdicionarCarrinho.setBackground(new Color(182, 209, 175));
 		btnAdicionarCarrinho.setFont(new Font("Sitka Text", Font.PLAIN, 15));
@@ -110,7 +110,7 @@ public class TelaCompra extends JPanel {
 	
 
 	
-	this.table.setModel(this.jtable_model);
+	//this.table.setModel(this.jtable_model);
 	}
 	
 	public int getSelectedRow() {
@@ -129,6 +129,11 @@ public class TelaCompra extends JPanel {
 			this.table.getSelectionModel().addListSelectionListener(listener);
 		}
 
+		
+		public void adicionarOuvinte(ComponentListener listener) {
+			this.addComponentListener(listener);
+		}
+		
 		public void setDetalhes(String detalhes) {
 			this.txtDetalhes.setText(detalhes);
 		}
@@ -145,7 +150,7 @@ public class TelaCompra extends JPanel {
 			btnVoltar.addActionListener(listener);
 		}
 		
-
+	
 		
 		public void atualizarTotal(double total) {
 		    lbTotal.setText(String.format("TOTAL: R$ %.2f", total));

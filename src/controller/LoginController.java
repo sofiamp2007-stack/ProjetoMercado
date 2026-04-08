@@ -1,11 +1,13 @@
 package controller;
 
+import java.awt.event.ComponentAdapter;
+
 import model.Usuario;
 import model.UsuarioDAO;
 import telas.TelaLogin;
 
 
-public class LoginController {
+public class LoginController  {
 	
 	@SuppressWarnings("unused")
 	private TelaLogin view;
@@ -39,7 +41,7 @@ public class LoginController {
 		    Usuario.TipoUsuario tipo = usuario.getTipo();
 
 		    if (tipo == Usuario.TipoUsuario.ADMIN) {
-		        navegador.navegarPara("CADASTRO PRODUTOS");
+		        navegador.navegarPara("CADASTRO_PRODUTO");
 		    } else {
 		        navegador.navegarPara("COMPRA");
 		    }

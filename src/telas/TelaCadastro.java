@@ -107,7 +107,6 @@ public class TelaCadastro extends JPanel {
 	}
 	
 
-
 	public String getCPF() {
 		return tfCPF.getText();
 	}

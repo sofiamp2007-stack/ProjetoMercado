@@ -1,10 +1,13 @@
 package controller;
 
+import java.awt.event.ComponentAdapter;
+
 import model.Usuario;
 import model.UsuarioDAO;
 import telas.TelaCadastro;
 
-public class CadastroUsuarioController { private final TelaCadastro view;
+public class CadastroUsuarioController  { 
+private final TelaCadastro view;
 private final UsuarioDAO model;
 private final Navegador navegador;
 

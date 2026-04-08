@@ -92,7 +92,7 @@ public class TelaLogin extends JPanel {
 		public void irParaCadastro(ActionListener al) {
 			btnCadastro.addActionListener(al);
 		}
-		
+			
 	
 		public String getNome() {
 			return tfNome.getText();

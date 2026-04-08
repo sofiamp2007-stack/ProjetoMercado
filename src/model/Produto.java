@@ -22,6 +22,11 @@ public class Produto {
         this.preco = preco;
         this.quantidade = quantidade;
     }
+    
+    public void exibir() {
+    	System.out.println(this.nome);
+    	//completar
+    }
 
 
 	//Getters e setters.

@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,7 @@ import model.Produto;
 import model.ProdutoDAO;
 import telas.TelaCompra;
 
-public class CompraController {
+public class CompraController extends ComponentAdapter {
     private final ProdutoDAO model;
     private final Navegador navegador;
     private TelaCompra view;
@@ -19,7 +21,7 @@ public class CompraController {
         this.model = model;
         this.navegador = navegador;
 
-        carregarProdutos();
+        this.carregarProdutos();
 
         this.view.adicionarCarrinho(e -> adicionarAoCarrinho());
         this.view.EmitirNota(e -> emitirNota());
@@ -36,6 +38,11 @@ public class CompraController {
             }
         });
     }
+
+	@Override
+	public void componentShown(ComponentEvent e) {
+		this.carregarProdutos();
+	}
 
     private void exibirDetalhes() {
         int linha = view.getSelectedRow();
@@ -54,6 +61,10 @@ public class CompraController {
 
     private void carregarProdutos() {
         List<Produto> produtos = model.listarProdutos();
+        for (Produto p : produtos) {
+        	p.exibir();
+        }
+        	
         view.setTabelaProdutos(produtos);
     }
 
