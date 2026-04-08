@@ -78,13 +78,14 @@ public class CompraController {
                     noCarrinho++;
                 }
             }
-
+            
+            //ve se o que ta no carrinho é maior que do estoque
             if (noCarrinho >= estoqueAtual) {
                 JOptionPane.showMessageDialog(null, "Quantidade solicitada excede o estoque disponível!");
                 return;
             }
 
-            // Adicionamos 1 unidade por vez
+          
             Produto p = new Produto(id, nome, preco, 1);
             carrinho.add(p);
             
@@ -103,7 +104,7 @@ public class CompraController {
         }
 
         StringBuilder nota = new StringBuilder();
-        nota.append("----- NOTA FISCAL -----\n");
+        nota.append(" NOTA FISCAL\n");
         double total = 0;
         
         try {
@@ -111,7 +112,7 @@ public class CompraController {
                 nota.append(String.format("%s - R$ %.2f\n", p.getNome(), p.getPreco()));
                 total += p.getPreco().doubleValue();
                 
-                // Baixa de estoque no banco de dados
+              
                 Produto produtoNoBanco = model.buscarPorId(p.getId());
                 if (produtoNoBanco != null) {
                     int novoEstoque = produtoNoBanco.getQuantidadeEstoque() - 1;
@@ -120,7 +121,7 @@ public class CompraController {
                 }
             }
             
-            nota.append("-----------------------\n");
+            nota.append("-----------\n");
             nota.append(String.format("TOTAL: R$ %.2f", total));
 
             JOptionPane.showMessageDialog(null, nota.toString(), "Nota Fiscal", JOptionPane.INFORMATION_MESSAGE);
@@ -128,7 +129,7 @@ public class CompraController {
             carrinho.clear();
             view.limparCarrinho();
             view.setDetalhes("");
-            carregarProdutos(); // Atualiza a tabela com o novo estoque
+            carregarProdutos(); 
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao processar a baixa de estoque: " + e.getMessage());

@@ -17,6 +17,7 @@ import model.Produto;
 
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
 import java.awt.event.ActionEvent;
 
 public class TelaCompra extends JPanel {
@@ -143,6 +144,8 @@ public class TelaCompra extends JPanel {
 		public void voltar(ActionListener listener) {
 			btnVoltar.addActionListener(listener);
 		}
+		
+
 		
 		public void atualizarTotal(double total) {
 		    lbTotal.setText(String.format("TOTAL: R$ %.2f", total));

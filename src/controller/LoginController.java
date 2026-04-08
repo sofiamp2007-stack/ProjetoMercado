@@ -20,27 +20,33 @@ public class LoginController {
 
 	
 		view.entrar(e -> {
-			String nome = view.getNome();
-			String cpf = view.getCpf();
-			
-			if(!nome.equals("") && !cpf.equals("")) {
-				   Usuario usuario = model.buscarPorNomeECpf(nome, cpf);
-				   
-				   Usuario.TipoUsuario tipo = usuario.getTipo();
-			
-			 // direciona para a tela de acordo com a escolha admin ou cliente 
-				if (tipo == Usuario.TipoUsuario.ADMIN) { 
-					this.navegador.navegarPara("CADASTRO_PRODUTO"); } else { this.navegador.navegarPara("COMPRA"); } }
-			else { this.view.exibirMensagem("Erro", "Preencha todos os campos!", 0); } 
-			});
-			
-			
-	view.irParaCadastro(e -> {
-		navegador.navegarPara("CADASTRO");
-	});
+		    String nome = view.getNome();
+		    String cpf = view.getCpf();
 
+		    if (nome.trim().isEmpty() || cpf.trim().isEmpty()) {
+		        view.exibirMensagem("Erro", "Preencha todos os campos!", 0);
+		        return;
+		    }
+
+		    Usuario usuario = model.buscarPorNomeECpf(nome, cpf);
+
+		  
+		    if (usuario == null) {
+		        view.exibirMensagem("Erro", "Usuário não encontrado!", 0);
+		        return;
+		    }
+
+		    Usuario.TipoUsuario tipo = usuario.getTipo();
+
+		    if (tipo == Usuario.TipoUsuario.ADMIN) {
+		        navegador.navegarPara("CADASTRO PRODUTOS");
+		    } else {
+		        navegador.navegarPara("COMPRA");
+		    }
+		});
 		
-	
+		view.irParaCadastro(e -> {
+			navegador.navegarPara("CADASTRO");
+		});
 
-	}
-}
+	}}

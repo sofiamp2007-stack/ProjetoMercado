@@ -146,7 +146,7 @@ public class TelaCadastro_de_Produtos extends JPanel {
 	public String getNome() {
 		return tfNome.getText();
 	}
-	
+
 
 	public int getQuantidade() {
 		 return Integer.parseInt(tfQuantidade.getText());

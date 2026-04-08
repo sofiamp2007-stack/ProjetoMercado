@@ -8,6 +8,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
@@ -91,7 +92,8 @@ public class TelaLogin extends JPanel {
 		public void irParaCadastro(ActionListener al) {
 			btnCadastro.addActionListener(al);
 		}
-
+		
+	
 		public String getNome() {
 			return tfNome.getText();
 		}
@@ -104,11 +106,13 @@ public class TelaLogin extends JPanel {
 				return new String(tfSenha.getPassword());
 			}
 
-			public void limparCampos() {
+	
+				public void limparCampos() {
 				tfNome.setText("");
 				tfCpf.setText("");
 				tfSenha.setText("");
 			}
+			
 			
 			public void exibirMensagem(String titulo, String mensagem, int tipo) {
 			JOptionPane.showMessageDialog(this, mensagem, titulo, tipo);
