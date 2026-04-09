@@ -92,8 +92,8 @@ public class TelaLogin extends JPanel {
 		public void irParaCadastro(ActionListener al) {
 			btnCadastro.addActionListener(al);
 		}
+		
 			
-	
 		public String getNome() {
 			return tfNome.getText();
 		}
@@ -105,7 +105,8 @@ public class TelaLogin extends JPanel {
 			public String getSenha() {
 				return new String(tfSenha.getPassword());
 			}
-
+			
+		
 	
 				public void limparCampos() {
 				tfNome.setText("");

@@ -7,18 +7,22 @@ import model.UsuarioDAO;
 import telas.TelaLogin;
 
 
-public class LoginController  {
+public class LoginController   {
 	
 	@SuppressWarnings("unused")
 	private TelaLogin view;
 	@SuppressWarnings("unused")
 	private Navegador navegador;
 	private UsuarioDAO model;
+	private CompraController compraController;
 
-	public LoginController(TelaLogin view, UsuarioDAO model, Navegador navegador)  {
+
+	public LoginController(TelaLogin view, UsuarioDAO model, Navegador navegador, CompraController compraController)  {
 		this.view = view;
 		this.navegador = navegador;
 		this.model =model;
+		this.compraController = compraController;
+
 
 	
 		view.entrar(e -> {
@@ -32,7 +36,8 @@ public class LoginController  {
 
 		    Usuario usuario = model.buscarPorNomeECpf(nome, cpf);
 
-		  
+		   
+		    
 		    if (usuario == null) {
 		        view.exibirMensagem("Erro", "Usuário não encontrado!", 0);
 		        return;
@@ -43,6 +48,7 @@ public class LoginController  {
 		    if (tipo == Usuario.TipoUsuario.ADMIN) {
 		        navegador.navegarPara("CADASTRO_PRODUTO");
 		    } else {
+		        compraController.setUsuarioLogado(usuario);
 		        navegador.navegarPara("COMPRA");
 		    }
 		});
@@ -50,5 +56,8 @@ public class LoginController  {
 		view.irParaCadastro(e -> {
 			navegador.navegarPara("CADASTRO");
 		});
+		
+		
+	
 
 	}}

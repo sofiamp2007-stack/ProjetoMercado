@@ -22,7 +22,7 @@ public CadastroUsuarioController(TelaCadastro view, UsuarioDAO model, Navegador 
 	this.model = model;
 	this.navegador = navegador;
 
-	//Define o que será executado quando o botão 'Cadastrar' da TelaCadastro for clicado.
+
 	this.view.cadastrar(e -> {
 		String nome = view.getNome();
 		String cpf= view.getCPF();
@@ -30,17 +30,16 @@ public CadastroUsuarioController(TelaCadastro view, UsuarioDAO model, Navegador 
 		
 		if(!nome.equals("") &&!cpf.equals("") && !senha.equals("")) {
 			
-			// descobre se é admin ou cliente 
+			
 			Usuario.TipoUsuario tipo = view.isAdministrador()
                     ? Usuario.TipoUsuario.ADMIN
                     : Usuario.TipoUsuario.CLIENTE;
 
 			
-			// cria um usuario na memoria 
+			
             Usuario usuario = new Usuario(nome, cpf, senha, tipo);
 
-            //salva no banco
-            this.model.adicionarUsuario(usuario);
+             this.model.adicionarUsuario(usuario);
 
         	this.view.limparFormulario();
 			this.view.exibirMensagem("Sucesso", " Usuario Salvo", 1);

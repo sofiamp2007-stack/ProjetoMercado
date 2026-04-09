@@ -7,6 +7,7 @@ import model.Usuario;
 import model.UsuarioDAO;
 
 import telas.TelaCadastro_de_Produtos;
+import telas.TelaLogin;
 
 import java.awt.event.ComponentEvent;
 import java.math.BigDecimal;
@@ -21,6 +22,7 @@ public class CadastroProdutoController {
 	private final ProdutoDAO model;
 	@SuppressWarnings("unused")
 	private final Navegador navegador;
+	private TelaLogin telaLogin;
 
 	/**
 	 * Construtor da classe
@@ -28,10 +30,11 @@ public class CadastroProdutoController {
 	 * @param model Referência ao modelo de dados (CandidatoDAO).
 	 * @param navegador Referência ao elemento que faz a transição de telas.
 	 */
-	public CadastroProdutoController(TelaCadastro_de_Produtos view, ProdutoDAO model, Navegador navegador) {
+	public CadastroProdutoController(TelaCadastro_de_Produtos view, ProdutoDAO model, Navegador navegador, TelaLogin telaLogin) {
 		this.view = view;
 		this.model = model;
 		this.navegador = navegador;
+		this.telaLogin = telaLogin;
 
 		  // Seleção da tabela
         this.view.addTableSelectionListener(e -> {
@@ -46,6 +49,7 @@ public class CadastroProdutoController {
         
 	        this.view.voltar(e -> {
 	            this.view.limparFormulario();
+	            telaLogin.limparCampos(); 
 	            this.navegador.navegarPara("LOGIN");
 	        });
 
@@ -57,20 +61,20 @@ public class CadastroProdutoController {
 	
     
 
-    // Quando a tela aparece
+
  
     public void componentShown(ComponentEvent e) {
         this.inicializarTabela();
     }
 
-    // Carrega produtos
+
     private void inicializarTabela() {
         List<Produto> produtos = this.model.listarProdutos();
         this.view.limpar();
         this.view.setTabelaProdutos(produtos);
     }
 
-    // Quando clica na tabela
+    
     private void handleTableSelection() {
         int linhaSelecionada = view.getSelectedRow();
 
@@ -79,7 +83,7 @@ public class CadastroProdutoController {
 
             Produto selecionado = model.buscarPorNome(nome);
 
-            // Preenche os campos
+      
             this.view.preencherFormulario(selecionado);
         }
         

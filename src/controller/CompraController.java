@@ -8,28 +8,40 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import model.Produto;
 import model.ProdutoDAO;
+import model.Usuario;
 import telas.TelaCompra;
+import telas.TelaLogin;
 
 public class CompraController extends ComponentAdapter {
     private final ProdutoDAO model;
     private final Navegador navegador;
     private TelaCompra view;
+    private Usuario usuarioLogado;
     private List<Produto> carrinho = new ArrayList<>();
+    private TelaLogin telaLogin;
+    
+    public void setUsuarioLogado(Usuario usuario) {
+        this.usuarioLogado = usuario;
 
-    public CompraController(TelaCompra view, ProdutoDAO model, Navegador navegador) {
+    }
+
+
+    public CompraController(TelaCompra view, ProdutoDAO model, Navegador navegador,TelaLogin telaLogin) {
         this.view = view;
         this.model = model;
         this.navegador = navegador;
+        this.telaLogin = telaLogin;
 
         this.carregarProdutos();
 
         this.view.adicionarCarrinho(e -> adicionarAoCarrinho());
         this.view.EmitirNota(e -> emitirNota());
         this.view.voltar(e -> {
-            carrinho.clear();
-            view.limparCarrinho();
-            view.setDetalhes("");
-            navegador.navegarPara("LOGIN");
+        	   carrinho.clear();
+               view.limparTela();
+               view.setDetalhes("");
+               telaLogin.limparCampos(); 
+               navegador.navegarPara("LOGIN");
         });
 
         this.view.addTableSelectionListener(e -> {
@@ -116,6 +128,11 @@ public class CompraController extends ComponentAdapter {
 
         StringBuilder nota = new StringBuilder();
         nota.append(" NOTA FISCAL\n");
+        if (usuarioLogado != null) {
+            nota.append("Cliente: " + usuarioLogado.getNome() +"\n");
+            nota.append("CPF:  " +usuarioLogado.getCpf() +"\n");
+            nota.append("-----------\n");
+        }
         double total = 0;
         
         try {

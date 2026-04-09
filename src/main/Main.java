@@ -54,14 +54,14 @@ public class Main {
 			navegador.adicionarPainel("COMPRA", telaCompra);
 			navegador.adicionarPainel("CADASTRO_PRODUTO", telaCadastroProduto);
 
-		
-			LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
+			CompraController compraController = new CompraController(telaCompra, produtoDAO, navegador,telaLogin);
+			LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador,compraController);
 			CadastroUsuarioController cadastroUsuarioController = new CadastroUsuarioController(telaCadastro, usuarioDAO, navegador);
-			CompraController compraController = new CompraController(telaCompra, produtoDAO, navegador);
-			CadastroProdutoController cadastroProdutoController = new CadastroProdutoController(telaCadastroProduto, produtoDAO, navegador);
+			CadastroProdutoController cadastroProdutoController = new CadastroProdutoController(telaCadastroProduto, produtoDAO, navegador,telaLogin);
 			
 		
 			telaCompra.adicionarOuvinte(compraController);
+			
 		
 			janela.setLocationRelativeTo(null);
 			janela.setVisible(true);

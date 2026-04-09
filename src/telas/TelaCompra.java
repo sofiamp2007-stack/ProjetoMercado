@@ -14,6 +14,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.Produto;
+import model.Usuario;
 
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
@@ -30,6 +31,7 @@ public class TelaCompra extends JPanel {
 	private JButton btnVoltar;
 	private JLabel lbTotal;
 	private JTextArea txtDetalhes;
+	private JLabel lblUsuarioLogado;
 
 
 	/**
@@ -52,6 +54,8 @@ public class TelaCompra extends JPanel {
 		table.setFont(new Font("Sitka Text", Font.BOLD, 15));
 		
 		scrollPane.setViewportView(table);
+		
+		
 		
 		this.jtable_model = new DefaultTableModel(
 				new Object[][] {
@@ -110,8 +114,10 @@ public class TelaCompra extends JPanel {
 	
 
 	
-	//this.table.setModel(this.jtable_model);
+	
 	}
+	
+
 	
 	public int getSelectedRow() {
 		return this.table.getSelectedRow();
@@ -158,6 +164,16 @@ public class TelaCompra extends JPanel {
 
 		public void limparCarrinho() {
 			lbTotal.setText("TOTAL: R$ 0,00");
+		}
+		
+		public void setUsuarioLogado(String nome) {
+			lblUsuarioLogado.setText("Usuário: " + nome);
+		}
+		
+		public void limparTela() {
+		    limparCarrinho(); 
+		    txtDetalhes.setText(""); 
+		    table.clearSelection(); 
 		}
 	
 }
