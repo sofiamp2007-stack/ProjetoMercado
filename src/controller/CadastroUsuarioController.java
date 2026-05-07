@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.event.ComponentAdapter;
+import java.sql.SQLException;
 
 import model.Usuario;
 import model.UsuarioDAO;
@@ -48,10 +49,16 @@ public CadastroUsuarioController(TelaCadastro view, UsuarioDAO model, Navegador 
                     : Usuario.TipoUsuario.CLIENTE;
 
             Usuario usuario = new Usuario(nome, cpf, senha, tipo);
-            this.model.adicionarUsuario(usuario);
-        	this.view.limparFormulario();
-			this.view.exibirMensagem("Sucesso", " Usuario Salvo", 1);
-		}
+            
+                try {
+                	this.model.adicionarUsuario(usuario);
+                	this.view.limparFormulario();
+        			this.view.exibirMensagem("Sucesso", " Usuario Salvo", 1);
+                } catch (SQLException ex) {
+                    this.view.exibirMensagem("Erro", "Cpf duplicado", 0);
+                }
+            }
+        	
 		
 		
 	});

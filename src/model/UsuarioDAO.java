@@ -4,15 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAO {
 
 	// CREATE - Adiciona um novo usuário
-	public void adicionarUsuario(Usuario usuario) {
+	public void adicionarUsuario(Usuario usuario) throws SQLException {
 		
-
+	
 		
 		String sql = "INSERT INTO Usuarios(nome, CPF, senha, tipo) VALUES (?, ?, ?, ?)";
 		Connection conexao = null;
@@ -29,8 +30,7 @@ public class UsuarioDAO {
 			
 			pstm.executeUpdate();
 			
-		} catch (SQLException e) {
-			e.printStackTrace();
+			
 		}finally {
 			dataBase.Conexão.desconectar(conexao);}}
 		
