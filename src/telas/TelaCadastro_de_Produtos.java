@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-
+import botoes.BotaoRedondo;
 import model.Produto;
 
 import javax.swing.JTextField;
@@ -103,23 +103,24 @@ public class TelaCadastro_de_Produtos extends JPanel {
 		this.jtable_model = (DefaultTableModel) this.tabela.getModel();
 		scrollPane.setViewportView(tabela);
 		
-		btnExcluir= new JButton("Excluir");
+		btnExcluir= new BotaoRedondo();
+		btnExcluir.setText("Excluir");
 		btnExcluir.setFont(new Font("Sitka Text", Font.PLAIN, 10));
-		btnExcluir.setBackground(new Color(182, 209, 175));
 		add(btnExcluir, "cell 1 9,growx");
 		
-		btnEditar= new JButton("Editar");
+		btnEditar= new BotaoRedondo();
+		btnEditar.setText("Editar");
 		btnEditar.setFont(new Font("Sitka Text", Font.PLAIN, 10));
-		btnEditar.setBackground(new Color(182, 209, 175));
 		btnEditar.setForeground(new Color(0, 0, 0));
 		add(btnEditar, "cell 2 9 2 1,growx");
 		
-		btnCadastro = new JButton("Cadastrar");
+		btnCadastro = new BotaoRedondo();
+		btnCadastro.setText(". Cadastrar .");
 		btnCadastro.setFont(new Font("Sitka Text", Font.PLAIN, 10));
-		btnCadastro.setBackground(new Color(182, 209, 175));
 		add(btnCadastro, "cell 4 9 2 1,growx");
 		
-		btnVoltar = new JButton("Voltar");
+		btnVoltar = new BotaoRedondo();
+		btnVoltar.setText(". Voltar .");
 		btnVoltar.setFont(new Font("Sitka Text", Font.PLAIN, 10));
 		btnVoltar.setBackground(new Color(182, 209, 175));
 		add(btnVoltar, "cell 6 9,alignx right,growy");

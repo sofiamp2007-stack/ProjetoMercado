@@ -31,16 +31,20 @@ public CadastroUsuarioController(TelaCadastro view, UsuarioDAO model, Navegador 
 		
 		if (nome.isEmpty() || cpf.isEmpty() || senha.isEmpty()) {
 			this.view.exibirMensagem("Erro", "Preencha todos os campos!", 0);
+			this.view.limparFormulario();
 		}
 		else if (nome.length() < 3) {
 			this.view.exibirMensagem("Erro", "Nome muito curto!", 0);
+			this.view.limparFormulario();
 		}
 
 		else if (senha.length() < 4) {
 			this.view.exibirMensagem("Erro", "Senha muito curta!", 0);
+			this.view.limparFormulario();
 		}
 		else if (!cpf.matches("\\d{11}")) {
 			this.view.exibirMensagem("Erro", "CPF inválido!", 0);
+			this.view.limparFormulario();
 		}
 		else {
 			
@@ -52,9 +56,14 @@ public CadastroUsuarioController(TelaCadastro view, UsuarioDAO model, Navegador 
             
                 try {
                 	this.model.adicionarUsuario(usuario);
-                	this.view.limparFormulario();
         			this.view.exibirMensagem("Sucesso", " Usuario Salvo", 1);
+        			this.view.limparFormulario();
+        		    navegador.navegarPara("LOGIN");
+
+       
                 } catch (SQLException ex) {
+                
+
                     this.view.exibirMensagem("Erro", "Cpf duplicado", 0);
                 }
             }
@@ -63,9 +72,6 @@ public CadastroUsuarioController(TelaCadastro view, UsuarioDAO model, Navegador 
 		
 	});
 	
-	view.irParaLogin(e -> {
-		navegador.navegarPara("LOGIN");
-	});
-
+	
 }
 }

@@ -11,16 +11,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
 
 import javax.swing.JTextField;
+
+import botoes.BotaoRedondo;
+
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
 public class TelaCadastro extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField tfNome;
 	private JTextField tfCPF;
-	private JTextField tfSenha;
 
 	/**
 	 * Create the panel.
@@ -29,6 +32,7 @@ public class TelaCadastro extends JPanel {
 	private JButton btnCadastrar;
 	private JRadioButton rdbSim;
 	private JRadioButton rdbNao;
+	private JPasswordField tfSenha;
 	
 	public TelaCadastro() {
 		setBackground(new Color(128, 128, 128));
@@ -64,9 +68,8 @@ public class TelaCadastro extends JPanel {
 		lbSenha.setFont(new Font("Sitka Text", Font.PLAIN, 11));
 		panel.add(lbSenha, "cell 1 5");
 		
-		tfSenha = new JTextField();
+		tfSenha = new JPasswordField();
 		panel.add(tfSenha, "cell 3 5,growx");
-		tfSenha.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("É um administrador?");
 		lblNewLabel_4.setFont(new Font("Sitka Text", Font.PLAIN, 11));
@@ -91,7 +94,8 @@ public class TelaCadastro extends JPanel {
 		rdbNao.setSelected(true);
 		
 		
-		btnCadastrar = new JButton("Cadastrar"); 
+		btnCadastrar = new BotaoRedondo();
+		btnCadastrar.setText("Cadastrar"); 
 		btnCadastrar.setFont(new Font("Sitka Text", Font.PLAIN, 11));
 		btnCadastrar.setBackground(new Color(182, 209, 175));
 		add(btnCadastrar, "cell 3 7,growx,aligny top");
@@ -111,6 +115,7 @@ public class TelaCadastro extends JPanel {
 		return tfCPF.getText();
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getSenha() {
 		return tfSenha.getText();
 	}

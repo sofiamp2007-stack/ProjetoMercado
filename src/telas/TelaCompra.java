@@ -13,6 +13,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import botoes.BotaoRedondo;
 import model.Produto;
 import model.Usuario;
 
@@ -66,20 +67,21 @@ public class TelaCompra extends JPanel {
 				}
 			);
 		table.setModel(this.jtable_model);
-		btnAdicionarCarrinho = new JButton("Adicionar ao carrinho");
-		btnAdicionarCarrinho.setBackground(new Color(182, 209, 175));
+		
+		btnAdicionarCarrinho = new BotaoRedondo();
+		btnAdicionarCarrinho.setText("Adicionar ao carrinho");
 		btnAdicionarCarrinho.setFont(new Font("Sitka Text", Font.PLAIN, 15));
 		add(btnAdicionarCarrinho, "cell 0 5,growx");
 		
-			btnEmitirNota = new JButton("Emitir Nota");
-			btnEmitirNota.setBackground(new Color(182, 209, 175));
-			btnEmitirNota.setFont(new Font("Sitka Text", Font.PLAIN, 15));
-			add(btnEmitirNota, "cell 1 5,growx");
+	    btnEmitirNota = new BotaoRedondo();
+		btnEmitirNota.setText("Emitir Nota");
+		btnEmitirNota.setFont(new Font("Sitka Text", Font.PLAIN, 15));
+		add(btnEmitirNota, "cell 1 5,growx");
 			
-						btnVoltar = new JButton("Voltar");
-						btnVoltar.setBackground(new Color(182, 209, 175));
-						btnVoltar.setFont(new Font("Sitka Text", Font.PLAIN, 15));
-						add(btnVoltar, "cell 2 5,growx");
+		btnVoltar = new BotaoRedondo();
+		btnVoltar.setText("Voltar");
+		btnVoltar.setFont(new Font("Sitka Text", Font.PLAIN, 15));
+		add(btnVoltar, "cell 2 5,growx");
 
 				JLabel lblDetalhes = new JLabel("Detalhes do Produto:");
 				lblDetalhes.setFont(new Font("Sitka Text", Font.BOLD, 14));

@@ -5,6 +5,9 @@ import net.miginfocom.swing.MigLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
+import botoes.BotaoRedondo;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -73,14 +76,16 @@ public class TelaLogin extends JPanel {
 			tfSenha = new JPasswordField();
 			panel.add(tfSenha, "cell 1 2,growx");
 
-			btnEntrar = new JButton("Entrar");
+		btnEntrar = new BotaoRedondo();
+		btnEntrar.setText("Entrar");
 		btnEntrar.setFont(new Font("Sitka Text", Font.PLAIN, 11));
-		btnEntrar.setBackground(new Color(182, 209, 175));
 		add(btnEntrar, "cell 1 9,growx");
 		
-		btnCadastro = new JButton("Solicitar Cadastro");
+
+		
+		btnCadastro = new BotaoRedondo();
+		btnCadastro.setText("Solicitar Cadastro");
 		btnCadastro.setFont(new Font("Sitka Text", Font.PLAIN, 11));
-		btnCadastro.setBackground(new Color(182, 209, 175));
 		add(btnCadastro, "cell 3 9,growx");
 	}
 		
